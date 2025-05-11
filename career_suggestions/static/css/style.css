@@ -1,10 +1,4 @@
-/* static/css/style.css */
-body {
-    font-family: sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-    color: #333;
-}
+
 
 h1, h2 {
     color: #007bff;
@@ -58,4 +52,60 @@ ul {
 
 li {
     margin-bottom: 5px;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333; /* Dark background */
+    color: #fff; /* White text */
+    padding: 1rem 0; /* Vertical padding */
+    position: sticky; /* Stick to the top on scroll */
+    top: 0;
+    z-index: 100; /* Ensure it stays on top of other content */
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between; /* Space out brand and menu */
+    align-items: center; /* Vertically align items */
+    max-width: 1200px; /* Maximum width for the container */
+    margin: 0 auto; /* Center the container */
+    padding: 0 1.5rem; /* Horizontal padding */
+}
+
+.navbar-brand a {
+    color: #eee; /* Light text for brand */
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 1.5rem; /* Spacing between menu items */
+}
+
+.navbar-menu a {
+    color: #ddd; /* Light text for menu items */
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.navbar-menu a:hover {
+    color: #fff; /* White text on hover */
+}
+
+/* Responsive adjustments (optional - for smaller screens) */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column; /* Stack brand and menu */
+        align-items: flex-start; /* Align to the left */
+    }
+
+    .navbar-menu {
+        flex-direction: column; /* Stack menu items */
+        align-items: flex-start;
+        margin-top: 1rem;
+        gap: 0.75rem;
+    }
 }

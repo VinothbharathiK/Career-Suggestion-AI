@@ -1,43 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>AI Career Suggestion (Django)</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Suggestions</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h1>Find Your AI Career Path</h1>
-    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
-        <label for="interests">Tell us about your skills and interests in AI:</label><br>
-        <textarea id="interests" name="interests" rows="4" cols="50"></textarea><br><br>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/">Career Compass</a>
+            </div>
+            <div class="navbar-menu">
+                <a href="#about">About</a>
+                <a href="#suggestions-section">Suggestions</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-        <label for="resume">Or upload your resume (PDF or Word):</label><br>
-        <input type="file" name="resume" id="resume"><br><br>
+    <div class="container">
+        <h1>AI Career Suggestions</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Get Suggestions</button>
+        </form>
 
-        <button type="submit">Get Suggestions</button>
-    </form>
-
-    {% if suggestions %}
-        <h2>Career Suggestions:</h2>
-        <ul>
-            {% for suggestion in suggestions %}
+        {% if suggestions %}
+        <section id="suggestions-section">
+            <h2>Career Suggestions:</h2>
+            <ul>
+                {% for suggestion in suggestions %}
                 <li>
-                    <strong>{{ suggestion.title }}</strong>
-                    {% if suggestion.description %}
-                        <p>{{ suggestion.description }}</p>
-                    {% endif %}
+                    <h3>{{ suggestion.title }}</h3>
+                    <p>{{ suggestion.description }}</p>
                     {% if suggestion.resources %}
-                        <p><strong>Learn More:</strong>
-                            <ul>
-                                {% for resource_url in suggestion.resources %}
-                                    <li><a href="{{ resource_url }}" target="_blank" rel="noopener noreferrer">{{ resource_url|truncatechars:50 }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </p>
+                    <p><strong>Resources:</strong>
+                        <ul>
+                            {% for resource in suggestion.resources %}
+                            <li><a href="{{ resource }}" target="_blank">{{ resource }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </p>
                     {% endif %}
                 </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+     
+    </div>
 </body>
 </html>
