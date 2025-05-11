@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Career Suggestion (Django)</title>
+</head>
+<body>
+    <h1>Find Your AI Career Path</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Get Suggestions</button>
+    </form>
+
+    {% if suggestions %}
+        <h2>Career Suggestions:</h2>
+        <ul>
+            {% for suggestion in suggestions %}
+                <li>{{ suggestion }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
